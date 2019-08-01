@@ -1,0 +1,56 @@
+homebrew_taps:
+  - homebrew/core
+  - homebrew/cask
+
+homebrew_installed_packages:
+  - curl
+  - coreutils
+  - gawk
+  - git
+  - gnu-sed
+  - go
+  - pandoc
+  - pyenv
+  - pyenv-virtualenv
+  - tldr
+  - tree
+  - wget
+  - zsh
+  - zsh-completions
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  - 1password
+  - alfred
+  - appcleaner
+  - battle-net
+  - docker
+  - firefox
+  - flux
+  - google-chrome
+  - iterm2
+  - mplayerx
+  - plex-media-server
+  - pocket-casts
+  - pycharm
+  - skype
+  - soda-player
+  - spotify
+  - spotify-notifications
+  - telegram
+  - the-unarchiver
+  - transmission
+  - viber
+  - visual-studio-code
+  - whatsapp
+  
+mas_installed_apps:
+  - {id: 467622356, name: "ABBYY Lingvo European"}
+  - {id: 937984704, name: "Amphetamine"}
+  - {id: 1166066070, name: "Bumpr"}
+  - {id: 1044549675, name: "Elmedia Video Player"}
+  - {id: 441258766, name: "Magnet"}
+  - {id: 880001334, name: "Reeder"}
+  - {id: 1176895641, name: "Spark"}
+
+

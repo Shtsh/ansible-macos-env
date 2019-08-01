@@ -1,0 +1,6 @@
+---
+- name: install emacs config
+  copy:
+    dest: ~/.emacs.d/init.el
+    src: files/emacs/init.el
+- include: emacs.{{ansible_distribution}}.yaml

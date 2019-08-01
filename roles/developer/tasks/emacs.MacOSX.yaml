@@ -1,0 +1,14 @@
+---
+- name: install emacs
+  homebrew:
+    name: emacs
+    state: latest
+- name: Install emacs plist
+  copy:
+    dest: ~/Library/LaunchAgents/org.shtsh.emacs.plist
+    src: files/emacs/org.shtsh.emacs.plist
+- name: Run emacs daemon on macOS
+  shell: launchctl list | grep org.shtsh.emacs || launchctl load ~/Library/LaunchAgents/org.shtsh.emacs.plist
+  register: launchctl_emacs
+  changed_when: launchctl_emacs.stderr == ""
+    

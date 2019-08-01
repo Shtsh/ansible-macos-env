@@ -1,0 +1,5 @@
+---
+- name: Include playbooks
+  include: "{{ item }}.yaml"
+  with_items: "{{ developer_enabled_tasks }}"
+    

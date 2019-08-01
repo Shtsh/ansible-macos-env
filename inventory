@@ -1,0 +1,6 @@
+[localhost:vars]
+ansible_become=yes  # use sudo 
+ansible_become_method=sudo
+
+[localhost]
+127.0.0.1

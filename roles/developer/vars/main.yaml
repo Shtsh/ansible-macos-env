@@ -1,0 +1,15 @@
+---
+zsh_files:
+  - {src: zshrc, dest: ~/.zshrc}
+  - {src: zshenv, dest: ~/.zshenv}
+  - {src: zsh/, dest: ~/.zsh}
+zsh_files_postinstall:
+  - {src: pyenv-geometry-plugin/, dest: ~/.zsh/themes/geometry/plugins/pyenv}
+
+zsh_theme:
+  repo: "https://github.com/geometry-zsh/geometry.git"
+  dest: "~/.zsh/themes/geometry"
+
+developer_enabled_tasks:
+  - emacs
+  - zsh
