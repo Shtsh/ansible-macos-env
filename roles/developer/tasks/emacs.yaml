@@ -1,4 +1,8 @@
 ---
+- name: Create ~/.emacs.d
+  file:
+    path: ~/.emacs.d
+    state: directory
 - name: install emacs config
   copy:
     dest: ~/.emacs.d/init.el
