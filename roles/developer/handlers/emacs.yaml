@@ -1,0 +1,6 @@
+---
+- name: install emacs plugins
+  shell: emacs --eval '(save-buffers-kill-emacs)' --batch
+
+- name: restart emacs daemon MacOSX
+  shell: launchctl unload ~/Library/LaunchAgents/org.shtsh.emacs.plist; launchctl load ~/Library/LaunchAgents/org.shtsh.emacs.plist

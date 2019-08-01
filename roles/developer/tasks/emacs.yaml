@@ -3,8 +3,14 @@
   file:
     path: ~/.emacs.d
     state: directory
+
 - name: install emacs config
   copy:
     dest: ~/.emacs.d/init.el
     src: files/emacs/init.el
+  register: emacs_config_updated
+  notify:
+    - install emacs plugins
+    - restart emacs daemon {{ansible_distribution}}
+
 - include: emacs.{{ansible_distribution}}.yaml
