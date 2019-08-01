@@ -13,9 +13,5 @@
   </array>
   <key>RunAtLoad</key>
   <true/>
-  <key>StandardOutPath</key>
-  <string>/tmp/emacs_sdout.log</string>
-  <key>StandardErrorPath</key>
-  <string>/tmp/emacs_sderr.log</string>
 </dict>
 </plist>

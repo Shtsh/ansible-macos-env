@@ -3,12 +3,18 @@
   homebrew:
     name: emacs
     state: latest
+
 - name: Install emacs plist
   copy:
     dest: ~/Library/LaunchAgents/org.shtsh.emacs.plist
     src: files/emacs/org.shtsh.emacs.plist
-- name: Run emacs daemon on macOS
+  register: emacs_plist_updated
+
+- name: Run emacs daemon
   shell: launchctl list | grep org.shtsh.emacs || launchctl load ~/Library/LaunchAgents/org.shtsh.emacs.plist
   register: launchctl_emacs
   changed_when: launchctl_emacs.stderr == ""
-    
+
+- name: restart emacs daemon
+  shell: launchctl unload ~/Library/LaunchAgents/org.shtsh.emacs.plist; launchctl load ~/Library/LaunchAgents/org.shtsh.emacs.plist
+  when: emacs_plist_updated.changed
