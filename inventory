@@ -1,5 +1,5 @@
 [localhost:vars]
-ansible_become=yes  # use sudo 
+ansible_become=no
 ansible_become_method=sudo
 
 [localhost]

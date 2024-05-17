@@ -1,15 +1,8 @@
 ---
 - hosts: localhost
   connection: local
-  
-  vars_files:
-    - config.yaml
 
   roles:
     - role: developer
       tags: ['developer']
-    - role: homebrew
-      tags: ['homebrew']
-    - role: geerlingguy.mas
-      tags: ['mas']
 

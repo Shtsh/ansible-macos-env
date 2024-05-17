@@ -2,16 +2,14 @@
 
 ## Features
 
-* Installs homebrew
 * Installs applications from homebrew
 * Installs applications from AppStore (requires app login first)
 * Installs GUI applications using homebrew cask
-* Configures zsh (geometry theme + custom plugins)
-* Configures emacs
 
 ## Usage
 
 ```bash
-ansible-galaxy install -r requirements.yaml
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install ansible
 ansible-playbook -i inventory main.yaml
 ```

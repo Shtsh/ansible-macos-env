@@ -1,3 +1,0 @@
----
-- name: restart emacs daemon
-  shell: launchctl unload ~/Library/LaunchAgents/org.shtsh.emacs.plist; launchctl load ~/Library/LaunchAgents/org.shtsh.emacs.plist

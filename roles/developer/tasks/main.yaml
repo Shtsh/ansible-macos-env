@@ -1,5 +1,20 @@
 ---
-- name: Include playbooks
-  include: "{{ item }}.yaml"
-  with_items: "{{ developer_enabled_tasks }}"
-    
+# Install formula foo with 'brew' in default path
+- name: Install packages via brew
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ developer_homebrew_packages }}"
+
+# tool to manage dotfiles
+- name: Rollout chezmoi
+  ansible.builtin.command: "chezmoi init --apply {{ developer_chezmoi_repo }}"
+  args:
+    creates: "~/.local/share/chezmoi"
+
+# Installs pacakges from appstore
+- name: Install packages via appstore
+  community.general.mas:
+    id: "{{ item.id }}"
+    state: present
+  with_items: "{{ developer_mas_installed_apps }}"

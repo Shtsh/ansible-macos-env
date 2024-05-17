@@ -1,15 +1,57 @@
 ---
-zsh_files:
-  - {src: zshrc, dest: ~/.zshrc}
-  - {src: zshenv, dest: ~/.zshenv}
-  - {src: zsh/, dest: ~/.zsh}
-zsh_files_postinstall:
-  - {src: pyenv-geometry-plugin/, dest: ~/.zsh/themes/geometry/plugins/pyenv}
-
-zsh_theme:
-  repo: "https://github.com/geometry-zsh/geometry.git"
-  dest: "~/.zsh/themes/geometry"
-
-developer_enabled_tasks:
-  - emacs
+developer_chezmoi_repo: git@github.com:Shtsh/dotfiles.git
+developer_homebrew_packages:
+  - homebrew/cask/1password
+  - homebrew/cask/1password-cli
+  - homebrew/cask/alacritty
+  - ansible-language-server
+  - homebrew/cask/appcleaner
+  - awscli
+  - homebrew/cask/bartender
+  - bash
+  - chezmoi
+  - curl
+  - coreutils
+  - homebrew/cask/docker
+  - docker-completion
+  - homebrew/cask/firefox
+  - homebrew/cask/font-fira-code-nerd-font
+  - fish
+  - eza
+  - fzf
+  - gawk
+  - git
+  - gnu-sed
+  - htop
+  - ical-buddy
+  - homebrew/cask/iterm2
+  - jq
+  - kubernetes-cli
+  - lua-language-server
+  - homebrew/cask/maccy
+  - marksman
+  - mas
+  - neovim
+  - pwgen
+  - pyright
+  - python@3.11
+  - python@3.12
+  - rust-analyzer
+  - homebrew/cask/spotify
+  - starship
+  - homebrew/cask/telegram
+  - homebrew/cask/the-unarchiver
+  - tldr
+  - homebrew/cask/transmission
+  - tmux
+  - tree
+  - wget
+  - homebrew/cask/visual-studio-code
   - zsh
+  - zsh-completions
+
+developer_mas_installed_apps:
+  - {id: 1166066070, name: "Bumpr"}
+  - {id: 441258766, name: "Magnet"}
+  - {id: 1176895641, name: "Spark"}
+
