@@ -1,0 +1,6 @@
+[directory]
+truncation_length = 8
+truncation_symbol = '…/'
+
+[python]
+pyenv_version_name = false

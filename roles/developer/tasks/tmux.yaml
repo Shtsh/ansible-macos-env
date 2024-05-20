@@ -1,0 +1,34 @@
+---
+- name: Include tmux variables
+  ansible.builtin.include_vars:
+    file: tmux.yaml
+  tags:
+    - always
+
+- name: Install tmux via brew
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ developer_tmux_brew_packages }}"
+  tags:
+    - packages
+    - brew
+    - tmux
+
+- name: Install tmux configs
+  ansible.builtin.copy:
+    src: files/tmux/
+    dest: ~/.config/tmux
+    mode: preserve
+  tags:
+    - configs
+    - tmux
+
+- name: Render tmux.conf
+  ansible.builtin.template:
+    src: "tmux/tmux.conf.j2"
+    dest: ~/.config/tmux/tmux.conf
+    mode: "0640"
+  tags:
+    - configs
+    - tmux

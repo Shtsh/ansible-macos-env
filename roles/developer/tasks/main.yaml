@@ -1,16 +1,24 @@
 ---
+- name: Install and configure important software
+  ansible.builtin.include_tasks:
+    file: "{{ item }}.yaml"
+  with_items:
+    - "brew"
+    - "neovim"
+    - "tmux"
+    - "fish"
+  tags:
+    - always
+
 # Install formula foo with 'brew' in default path
 - name: Install packages via brew
   community.general.homebrew:
     name: "{{ item }}"
     state: present
   with_items: "{{ developer_homebrew_packages }}"
-
-# tool to manage dotfiles
-- name: Rollout chezmoi
-  ansible.builtin.command: "chezmoi init --apply {{ developer_chezmoi_repo }}"
-  args:
-    creates: "~/.local/share/chezmoi"
+  tags:
+    - packages
+    - brew
 
 # Installs pacakges from appstore
 - name: Install packages via appstore
@@ -18,3 +26,17 @@
     id: "{{ item.id }}"
     state: present
   with_items: "{{ developer_mas_installed_apps }}"
+  tags:
+    - packages
+    - appstore
+
+- name: Install config directories
+  ansible.builtin.copy:
+    src: "files/{{ item.name }}"
+    dest: "{{ item.dst }}"
+    mode: preserve
+  with_items:
+    - { name: "alacritty", dst: "~/.config" }
+    - { name: "starship.toml", dst: "~/.config/" }
+  tags:
+    - configs

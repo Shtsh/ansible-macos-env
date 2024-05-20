@@ -1,0 +1,16 @@
+---
+- name: Check if brew is installed
+  ansible.builtin.shell:
+    cmd: which brew
+  register: brew_installed
+  ignore_errors: true
+  changed_when: false
+  tags:
+    - always
+
+- name: Install brew
+  ansible.builtin.shell:
+    cmd: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  when: brew_installed is failed
+  tags:
+    - brew

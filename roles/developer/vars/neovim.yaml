@@ -1,0 +1,7 @@
+---
+developer_neovim_brew_packages:
+  - eza
+  - neovim
+  - lua-language-server
+  - pyright
+  - rust-analyzer

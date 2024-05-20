@@ -1,0 +1,7 @@
+---
+developer_tmux_config:
+  catppuccin_status_modules_right: "meetings date_time battery"
+
+developer_tmux_brew_packages:
+  - tmux
+  - ical-buddy

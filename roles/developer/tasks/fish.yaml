@@ -1,0 +1,36 @@
+---
+- name: Install fish dependencies via brew
+  community.general.homebrew:
+    name: fish
+  tags:
+    - packages
+    - brew
+    - fish
+
+- name: Install config directories
+  ansible.builtin.copy:
+    src: "files/fish/"
+    dest: "~/.config/fish"
+    mode: preserve
+  tags:
+    - configs
+    - fish
+
+- name: Check theme
+  ansible.builtin.shell:
+    executable: /opt/homebrew/bin/fish
+    cmd: "fish_config theme dump | grep 'fish_color_normal c6d0f5'"
+  register: result
+  ignore_errors: true
+  changed_when: false
+  tags:
+    - always
+
+- name: Set theme
+  ansible.builtin.shell:
+    executable: /opt/homebrew/bin/fish
+    cmd: fish_config theme save "Catppuccin Frappe"
+  when: result is failed
+  tags:
+    - configs
+    - fish

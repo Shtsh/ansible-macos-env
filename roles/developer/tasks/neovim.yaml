@@ -1,0 +1,25 @@
+---
+- name: Include neovim variables
+  ansible.builtin.include_vars:
+    file: neovim.yaml
+  tags:
+    - always
+
+- name: Install neovim dependencies via brew
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ developer_neovim_brew_packages }}"
+  tags:
+    - packages
+    - brew
+    - neovim
+
+- name: Install neovim configs
+  ansible.builtin.copy:
+    src: files/neovim/
+    dest: ~/.config/nvim
+    mode: preserve
+  tags:
+    - configs
+    - neovim

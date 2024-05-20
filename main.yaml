@@ -1,8 +1,9 @@
 ---
-- hosts: localhost
+- name: Default play
+  hosts: localhost
   connection: local
 
   roles:
     - role: developer
-      tags: ['developer']
-
+      tags:
+        - developer
