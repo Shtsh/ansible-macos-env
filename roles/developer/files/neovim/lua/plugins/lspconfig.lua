@@ -51,18 +51,37 @@ return {
 			opts = { window = { size = "98%" }, lsp = { auto_attach = true } },
 		},
 		{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-		"Shtsh/neoconf-venom.nvim",
+		{ "Shtsh/neoconf-venom.nvim" },
 		"nvim-treesitter/nvim-treesitter",
 		{ "folke/neodev.nvim", opts = {} },
+		{ "j-hui/fidget.nvim", opts = {} },
 	},
 	config = function()
 		require("neoconf").setup()
 		require("neodev").setup({ library = { plugins = { "neotest" }, types = true } })
-		require("venom").setup()
 
 		-- Servers configuration
 		local servers = {
-			pyright = {},
+			basedpyright = {
+				settings = {
+					basedpyright = {
+						typeCheckingMode = "all",
+						analysis = {
+							diagnosticSeverityOverrides = {
+								reportAny = false,
+								reportImplicitOverride = false,
+								reportImplicitStringConcatenation = false,
+								reportMissingParameterType = "warning",
+								reportMissingSuperCall = false,
+								reportUnknownArgumentType = false,
+								reportUnknownMemberType = false,
+								reportUnknownParameterType = false,
+								reportUnknownVariableType = false,
+							},
+						},
+					},
+				},
+			},
 			rust_analyzer = {
 				settings = {
 					["rust-analyzer"] = {
@@ -79,12 +98,12 @@ return {
 					-- otherwise some are node displayed
 					-- Learn from rust-tools.nvim
 					["experimental/serverStatus"] = function()
-							-- First, toggle disable because bufstate.applied
-							-- prevents vim.lsp.inlay_hint(bufnr, true) from refreshing.
-							-- Therefore, we need to clear bufstate.applied.
-							vim.lsp.inlay_hint.enable(false)
-							-- toggle enable
-							vim.lsp.inlay_hint.enable(true)
+						-- First, toggle disable because bufstate.applied
+						-- prevents vim.lsp.inlay_hint(bufnr, true) from refreshing.
+						-- Therefore, we need to clear bufstate.applied.
+						vim.lsp.inlay_hint.enable(false)
+						-- toggle enable
+						vim.lsp.inlay_hint.enable(true)
 					end,
 				},
 			},
@@ -115,6 +134,7 @@ return {
 			vim.tbl_extend("force", conf, {
 				capabilities = capabilities,
 			})
+
 			lspconfig[server].setup(conf)
 		end
 

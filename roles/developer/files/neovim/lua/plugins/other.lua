@@ -24,5 +24,4 @@ return {
 	},
 	{ "knsh14/vim-github-link" },
 	{ "christoomey/vim-tmux-navigator", lazy = false },
-	{ "stsewd/isort.nvim" },
 }

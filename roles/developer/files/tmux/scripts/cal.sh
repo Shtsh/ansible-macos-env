@@ -2,7 +2,6 @@ ALERT_IF_IN_NEXT_MINUTES=60
 ALERT_POPUP_BEFORE_SECONDS=60
 NERD_FONT_FREE="󱁕"
 NERD_FONT_MEETING=""
-# NERD_FONT_MEETING="󰤙"
 
 get_attendees() {
 	attendees=$(
@@ -123,7 +122,7 @@ main() {
 	get_next_meeting
 	parse_result "$next_meeting"
 	calculate_times
-	if [[ "$next_meeting" != "" && $number_of_attendees -lt 2 ]]; then
+	if [[ "$next_meeting" != "" && $minutes_till_meeting_end -lt 10 ]]; then
 		get_next_next_meeting
 		if [[ "$next_next_meeting" != "" ]]; then
 			parse_result "$next_next_meeting"
