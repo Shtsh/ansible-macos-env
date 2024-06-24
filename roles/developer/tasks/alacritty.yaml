@@ -1,0 +1,18 @@
+---
+- name: Install alacritty dependencies via brew
+  community.general.homebrew:
+    name: alacritty
+    state: latest
+  tags:
+    - packages
+    - brew
+    - alacritty
+
+- name: Install alacritty configs
+  ansible.builtin.copy:
+    src: files/alacritty
+    dest: ~/.config
+    mode: preserve
+  tags:
+    - configs
+    - alacritty

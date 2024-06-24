@@ -27,13 +27,29 @@ vim.keymap.set("n", "U", "<C-R>")
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Keybinds to make split navigation easier.
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+-- vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+-- vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+-- vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+-- vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+-- resizing splits
+-- these keymaps will also accept a range,
+-- for example `10<A-h>` will `resize_left` by `(10 * config.default_amount)`
+vim.keymap.set('n', '<A-h>', function() require('smart-splits').resize_left() end)
+vim.keymap.set('n', '<A-j>', function() require('smart-splits').resize_down() end)
+vim.keymap.set('n', '<A-k>', function() require('smart-splits').resize_up() end)
+vim.keymap.set('n', '<A-l>', function() require('smart-splits').resize_right() end)
+-- moving between splits
+vim.keymap.set('n', '<C-h>', function() require('smart-splits').move_cursor_left() end)
+vim.keymap.set('n', '<C-j>', function() require('smart-splits').move_cursor_down() end)
+vim.keymap.set('n', '<C-k>', function() require('smart-splits').move_cursor_up() end)
+vim.keymap.set('n', '<C-l>', function() require('smart-splits').move_cursor_right() end)
+vim.keymap.set('n', '<C-\\>',function()  require('smart-splits').move_cursor_previous() end)
+
 
 -- exit insert mode on douple press of navigation
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
+vim.keymap.set("i", "jj", "<ESC>", { desc = "Exit insert mode" })
+vim.keymap.set("i", "kk", "<ESC>", { desc = "Exit insert mode" })
 vim.keymap.set("i", "kj", "<ESC>", { desc = "Exit insert mode" })
 
 -- session

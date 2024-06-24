@@ -50,7 +50,7 @@ set -g @catppuccin_meetings_text "#($HOME/.config/tmux/scripts/cal.sh)"
 # Current directory in tab name
 set-option -g status-interval 5 # update status every n seconds
 set-option -g automatic-rename on
-set-option -g automatic-rename-format " #(echo '#{pane_current_path}' | ~/.config/tmux/scripts/shortpath.sh) "
+set-option -g automatic-rename-format " #(echo '#{pane_current_path}' | ~/.config/tmux/scripts/shortpath.sh) "
 
 set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'christoomey/vim-tmux-navigator'

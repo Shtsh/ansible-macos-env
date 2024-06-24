@@ -7,6 +7,7 @@
     - "neovim"
     - "tmux"
     - "fish"
+    - "wezterm"
   tags:
     - always
 
@@ -36,7 +37,6 @@
     dest: "{{ item.dst }}"
     mode: preserve
   with_items:
-    - { name: "alacritty", dst: "~/.config" }
     - { name: "starship.toml", dst: "~/.config/" }
   tags:
     - configs

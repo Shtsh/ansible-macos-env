@@ -23,5 +23,5 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim", "folke/neoconf.nvim" },
 	},
 	{ "knsh14/vim-github-link" },
-	{ "christoomey/vim-tmux-navigator", lazy = false },
+	{ "mrjones2014/smart-splits.nvim", opts = {} },
 }

@@ -22,6 +22,7 @@ return {
 			},
 			sections = {
 				lualine_a = { "mode" },
+				lualine_c = { { "filename", path = 1 } },
 				lualine_x = {
 					{
 						lazy_status.updates,

@@ -1,0 +1,22 @@
+---
+- name: Install wezterm dependencies via brew
+  community.general.homebrew:
+    name: wezterm
+    state: latest
+  with_items:
+    - "wezterm"
+    - "ical-buddy"
+  tags:
+    - packages
+    - brew
+    - wezterm
+
+- name: Install wezterm configs
+  ansible.builtin.copy:
+    src: files/wezterm
+    dest: ~/.config
+    mode: preserve
+  tags:
+    - configs
+    - wezterm
+    - wezterm_configs

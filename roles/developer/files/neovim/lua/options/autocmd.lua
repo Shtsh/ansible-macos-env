@@ -17,17 +17,17 @@ vim.api.nvim_create_autocmd({ "QuitPre" }, {
 		require("neotest").summary.close()
 	end,
 })
-
-vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
-	callback = function()
-		vim.fn.system({ "tmux", "rename-window", vim.fn.expand("%:t") })
-	end,
-})
-
-vim.api.nvim_create_autocmd({ "VimLeave" }, {
-	callback = function()
-		-- local status = vim.fn.system({ "tmux", "show-options", "-gv", "window-status-current-format" })
-		-- vim.fn.system({ "tmux", "rename-window", status })
-		vim.fn.system({ "tmux", "setw", "automatic-rename" })
-	end,
-})
+--
+-- vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
+-- 	callback = function()
+-- 		vim.fn.system({ "tmux", "rename-window", " " .. vim.fn.expand("%:t") })
+-- 	end,
+-- })
+--
+-- vim.api.nvim_create_autocmd({ "VimLeave" }, {
+-- 	callback = function()
+-- 		-- local status = vim.fn.system({ "tmux", "show-options", "-gv", "window-status-current-format" })
+-- 		-- vim.fn.system({ "tmux", "rename-window", status })
+-- 		vim.fn.system({ "tmux", "setw", "automatic-rename" })
+-- 	end,
+-- })

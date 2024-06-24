@@ -73,6 +73,8 @@ return {
 								reportImplicitStringConcatenation = false,
 								reportMissingParameterType = "warning",
 								reportMissingSuperCall = false,
+								reportMissingTypeStubs = false,
+								reportUndefinedVariable = false,
 								reportUnknownArgumentType = false,
 								reportUnknownMemberType = false,
 								reportUnknownParameterType = false,
@@ -83,16 +85,6 @@ return {
 				},
 			},
 			rust_analyzer = {
-				settings = {
-					["rust-analyzer"] = {
-						inlayHints = {
-							enable = true,
-							showParameterNames = true,
-							parameterHintsPrefix = "<- ",
-							otherHintsPrefix = "=> ",
-						},
-					},
-				},
 				handlers = {
 					-- Workaround to refresh hints in open part of buffer
 					-- otherwise some are node displayed
