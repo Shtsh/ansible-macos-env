@@ -1,10 +1,10 @@
-
 return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-nvim-lsp-signature-help",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -44,12 +44,12 @@ return {
 				--  Generally you don't need this, because nvim-cmp will display
 				--  completions whenever it has completion options available.
 				["<C-Space>"] = cmp.mapping.complete({}),
-
 			}),
 			sources = {
 				{ name = "nvim_lsp" },
 				{ name = "path" },
 				{ name = "buffer" },
+				{ name = "nvim_lsp_signature_help" },
 			},
 		})
 	end,

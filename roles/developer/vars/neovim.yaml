@@ -1,5 +1,6 @@
 ---
 developer_neovim_brew_packages:
+  - ansible-language-server
   - eza
   - neovim
   - lua-language-server

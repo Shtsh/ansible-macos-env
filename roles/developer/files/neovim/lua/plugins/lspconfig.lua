@@ -66,9 +66,11 @@ return {
 				settings = {
 					basedpyright = {
 						typeCheckingMode = "all",
+						deprecateTypingAliases = false,
 						analysis = {
 							diagnosticSeverityOverrides = {
 								reportAny = false,
+								repoortDeprecated = "warning",
 								reportImplicitOverride = false,
 								reportImplicitStringConcatenation = false,
 								reportMissingParameterType = "warning",
@@ -79,6 +81,7 @@ return {
 								reportUnknownMemberType = false,
 								reportUnknownParameterType = false,
 								reportUnknownVariableType = false,
+								reportUnusedCallResult = false,
 							},
 						},
 					},
@@ -101,16 +104,11 @@ return {
 			},
 			lua_ls = {},
 			ansiblels = {
-				filetypes = { "yaml.ansible", "yaml" },
+				filetypes = { "yaml.ansible" },
 				root_dir = require("lspconfig.util").root_pattern("ansible.cfg", ".ansible-lint", "inventory"),
 			},
 			puppet = {
 				cmd = { os.getenv("HOME") .. "/.local/puppet-editor-services/puppet-languageserver", "--stdio" },
-				settings = {
-					puppet = {
-						EditorService = { debugFilePath = os.getenv("HOME") .. "/.local/state/nvim/puppet.log" },
-					},
-				},
 			},
 		}
 

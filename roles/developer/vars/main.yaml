@@ -3,11 +3,9 @@ developer_chezmoi_repo: git@github.com:Shtsh/dotfiles.git
 developer_homebrew_packages:
   - homebrew/cask/1password
   - homebrew/cask/1password-cli
-  - ansible-language-server
   - homebrew/cask/appcleaner
   - awscli
   - bash
-  - chezmoi
   - curl
   - coreutils
   - homebrew/cask/docker
@@ -27,6 +25,7 @@ developer_homebrew_packages:
   - marksman
   - mas
   - pwgen
+  - python@3.9
   - python@3.11
   - python@3.12
   - homebrew/cask/spotify

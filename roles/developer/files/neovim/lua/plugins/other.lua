@@ -11,17 +11,15 @@ return {
 		end,
 		cmd = "Glow",
 	},
-	{
-		"folke/trouble.nvim",
-		opts = {},
-	},
-	{
-		"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-	},
+	{ "folke/trouble.nvim", opts = {} },
+	{ "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
+
+	-- python virtualenv select
 	{
 		"Shtsh/neoconf-venom.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "folke/neoconf.nvim" },
 	},
-	{ "knsh14/vim-github-link" },
-	{ "mrjones2014/smart-splits.nvim", opts = {} },
+
+	{ "knsh14/vim-github-link" }, -- generate links to the file/line in github/gilab
+	{ "mrjones2014/smart-splits.nvim", opts = {} }, -- integration with wezterm splits
 }

@@ -52,14 +52,16 @@ config.keys = {
 	},
 }
 
+-- need to disable all default patterns in order to put own rules to the top
 config.disable_default_quick_select_patterns = true
 config.quick_select_patterns = {
 	-- file with line number
 	-- mostly to work with grep -i results
 	"[/.A-Za-z0-9_-]+\\.[A-Za-z0-9]+:\\d+",
+	-- custom url regex as default one did't work if the url is in quotes
+	"https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)",
 
-	-- below are default ones
-	-- need this to have grep output prioritized
+	-- below are the default ones
 	-- taken from wezterm/wezterm-gui/src/overlay/quickselect.rs
 
 	-- markdown_url
@@ -92,11 +94,8 @@ config.quick_select_patterns = {
 	"[0-9]{4,}",
 }
 
+-- plugin to switch panes via C-[hjkl] respecting nvim splits
 smart_splits.apply_to_config(config, {
-	-- the default config is here, if you'd like to use the default keys,
-	-- you can omit this configuration table parameter and just use
-	-- smart_splits.apply_to_config(config)
-
 	-- directional keys to use in order of: left, down, up, right
 	direction_keys = { "h", "j", "k", "l" },
 	-- modifier keys to combine with direction_keys

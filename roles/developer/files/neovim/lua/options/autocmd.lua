@@ -13,10 +13,17 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd({ "QuitPre" }, {
 	callback = function()
 		vim.cmd("NvimTreeClose")
-		vim.cmd("TroubleClose")
 		require("neotest").summary.close()
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { "*/ansible/*yaml", "*/roles/*yaml" },
+	callback = function()
+		vim.cmd("setfiletype yaml.ansible")
+	end,
+})
+
 --
 -- vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
 -- 	callback = function()

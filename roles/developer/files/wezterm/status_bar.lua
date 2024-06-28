@@ -3,7 +3,14 @@ local ical = require("ical")
 local colors = require("machiatto")
 local battery = require("battery")
 
-ical.setup({})
+ical.setup({
+	critical_text_color = colors.red,
+	critical_background_color = colors.base,
+	warning_text_color = colors.yellow,
+	warning_background_color = colors.base,
+	normal_text_color = colors.sapphire,
+	normal_background_color = colors.base,
+})
 local status = {}
 
 status.setup = function()
@@ -14,13 +21,16 @@ status.setup = function()
 		local main_table = {}
 
 		-- Next meeting if there is any
-		local next_meeting = ical.get_next_meeting_text()
+		local next_meeting, color_data = ical.get_next_meeting_data()
+		if color_data == nil then
+			color_data = { text = colors.sapphire, background = colors.base }
+		end
 		if not (next_meeting == nil) then
 			local next_meeting_table = {
-				{ Foreground = { Color = colors.base } },
+				{ Foreground = { Color = color_data.background} },
 				{ Text = "" },
-				{ Foreground = { Color = colors.sapphire } },
-				{ Background = { Color = colors.base } },
+				{ Foreground = { Color = color_data.text } },
+				{ Background = { Color = color_data.background } },
 				{ Text = next_meeting },
 				"ResetAttributes",
 			}
