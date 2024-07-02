@@ -60,6 +60,12 @@ config.quick_select_patterns = {
 	"[/.A-Za-z0-9_-]+\\.[A-Za-z0-9]+:\\d+",
 	-- custom url regex as default one did't work if the url is in quotes
 	"https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)",
+	-- company hosts
+	-- cannot use () as only the group will be selected
+	"\\S+\\.corp\\.\\w+\\.com",
+	"\\S+\\.prod\\.\\w+\\.com",
+	-- copy the command from the prompt
+	"[#\\$❯] (.+)",
 
 	-- below are the default ones
 	-- taken from wezterm/wezterm-gui/src/overlay/quickselect.rs

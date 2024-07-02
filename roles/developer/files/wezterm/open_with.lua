@@ -38,10 +38,64 @@ local function open_in_nvim(full_path, line)
 	return action
 end
 
+local function is_url(text)
+	return not (text:find("^https?://") == nil)
+end
+
+local function is_ip(selection)
+	return not (selection:find("^[1-2]*[0-9]*[0-9]+%.[1-2]*[0-9]*[0-9]+%.[1-2]*[0-9]*[0-9]+%.[1-2]*[0-9]*[0-9]+$") == nil)
+end
+
+local function is_hostname(selection)
+	if not (selection:find(".*%.corp%.%a+%.com") == nil) then
+		return true
+	end
+	if not (selection:find(".*%.prod%.%a+%.com") == nil) then
+		return true
+	end
+end
+
+local function ssh_action(host)
+	local args = { "/usr/bin/ssh", host }
+	local action = wezterm.action.SplitPane({
+		direction = "Right",
+		command = { args = args },
+	})
+	return action
+end
+
+local function ping_action(ip)
+	local args = { "/sbin/ping", ip }
+	local action = wezterm.action.SplitPane({
+		direction = "Right",
+		command = { args = args },
+	})
+	return action
+end
+
 M.open_selection = function(window, pane)
 	local selection = window:get_selection_text_for_pane(pane)
-	if not is_path(selection) then
+
+	if is_url(selection) then
 		return wezterm.open_with(selection)
+	end
+
+	if is_hostname(selection) then
+		local action = ssh_action(selection)
+		window:perform_action(action, pane)
+		return nil
+	end
+
+	if is_ip(selection) then
+		local action = ping_action(selection)
+		window:perform_action(action, pane)
+		return nil
+	end
+
+	if not is_path(selection) then
+		local action = wezterm.action.SendString(selection)
+		window:perform_action(action, pane)
+		return nil
 	end
 
 	local number = nil
