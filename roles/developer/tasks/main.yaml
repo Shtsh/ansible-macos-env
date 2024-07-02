@@ -4,6 +4,8 @@
     file: "{{ item }}.yaml"
   with_items:
     - "brew"
+    - "rust"
+    - "rsvenv"
     - "neovim"
     - "tmux"
     - "fish"

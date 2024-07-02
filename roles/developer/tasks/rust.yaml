@@ -1,0 +1,16 @@
+---
+- name: Check rustup is installed
+  ansible.builtin.shell:
+    cmd: which rustup
+  register: rust_installed
+  ignore_errors: true
+  changed_when: false
+  tags:
+    - always
+
+- name: Install rustup
+  ansible.builtin.shell:
+    cmd: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  when: rust_installed is failed
+  tags:
+    - rust

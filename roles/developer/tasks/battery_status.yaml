@@ -1,0 +1,25 @@
+---
+- name: Checkout repo
+  ansible.builtin.git:
+    repo: 'git@github.com:Shtsh/ansible-macos-env.git'
+    dest: ~/Hobby/battery-status
+    update: no
+  tags:
+    - battery_status
+
+- name: Check battery-status is installed
+  ansible.builtin.shell:
+    cmd: which battery-status
+  register: bs_installed
+  ignore_errors: true
+  changed_when: false
+  tags:
+    - battery_status
+
+- name: Install battery-status
+  ansible.builtin.shell:
+    chdir: ~/Hobby/battery-status/
+    cmd: cargo install --path . --root ~/.cargo/
+  when: bs_installed is failed
+  tags:
+    - battery_status

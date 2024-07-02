@@ -11,6 +11,12 @@
     - brew
     - wezterm
 
+- name: Install and configure battery-status
+  ansible.builtin.include_tasks:
+    file: battery_status.yaml
+  tags:
+    - always
+
 - name: Install wezterm configs
   ansible.builtin.copy:
     src: files/wezterm
