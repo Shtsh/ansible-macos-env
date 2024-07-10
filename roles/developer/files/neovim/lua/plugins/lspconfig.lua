@@ -7,15 +7,6 @@ local function attach(event)
 	})
 
 	local client = vim.lsp.get_client_by_id(event.data.client_id)
-	if client then
-		-- diagnostic popup
-		vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-			group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
-			callback = function()
-				vim.diagnostic.open_float(nil, { focus = false, scope = "cursor", border = "rounded" })
-			end,
-		})
-	end
 
 	-- The following two autocommands are used to highlight references of the
 	-- word under your cursor when your cursor rests there for a little while.

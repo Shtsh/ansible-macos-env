@@ -1,17 +1,28 @@
 -- Simple plugins that don't require complex configuration
 return {
 	{
-		"ellisonleao/glow.nvim",
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "VeryLazy",
 		config = function()
-			require("glow").setup({
-				style = "dark",
-				width_ratio = 0.93, -- maximum width of the Glow window compared to the nvim window size (overrides `width`)
-				height_ratio = 0.93,
-			})
+			require("tiny-inline-diagnostic").setup()
 		end,
-		cmd = "Glow",
 	},
-	{ "folke/trouble.nvim", opts = {} },
+	{
+		"brenoprata10/nvim-highlight-colors",
+		config = function()
+			require("nvim-highlight-colors").setup({})
+		end,
+	},
+	{
+		"OXY2DEV/markview.nvim", -- markdown preview
+		dependencies = {
+			"nvim-tree/nvim-web-devicons", -- Used by the code bloxks
+		},
+
+		config = function()
+			require("markview").setup()
+		end,
+	},
 	{ "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
 
 	-- python virtualenv select

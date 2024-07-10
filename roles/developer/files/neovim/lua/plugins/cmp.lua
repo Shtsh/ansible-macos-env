@@ -5,6 +5,7 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-nvim-lsp-signature-help",
+		"brenoprata10/nvim-highlight-colors",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -16,6 +17,9 @@ return {
 				end,
 			},
 			completion = { completeopt = "menu,menuone,noinsert" },
+			formatting = {
+				format = require("nvim-highlight-colors").format,
+			},
 			window = {
 				completion = cmp.config.window.bordered(),
 				documentation = cmp.config.window.bordered(),

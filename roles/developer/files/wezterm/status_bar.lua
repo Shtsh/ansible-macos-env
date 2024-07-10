@@ -29,7 +29,7 @@ status.setup = function()
 		-- child process and include them in the status area, too.
 		local main_table = {}
 
-		local last_background = colors.base;
+		local last_background = colors.base
 		-- Next meeting if there is any
 		local next_meeting, color_data = ical.get_next_meeting_data()
 		if color_data == nil then
@@ -51,35 +51,35 @@ status.setup = function()
 		end
 
 		-- peripherials battery info
-		local mouse, keyboard = peripherials.read_battery_status()
-		local kb_battery_table = {
-			{ Foreground = { Color = peripherials.opts.keyboard_bg_color } },
-			{ Background = { Color = last_background } },
-			{ Text = "" },
-			{ Background = { Color = peripherials.opts.keyboard_bg_color } },
-			{ Foreground = { Color = peripherials.opts.keyboard_fg_color } },
-			{ Text = peripherials.get_keyboard_text() },
-			"ResetAttributes",
-		}
+		peripherials.read_battery_status()
+		if not (peripherials.keyboard_battery == nil) then
+			local kb_battery_table = {
+				{ Foreground = { Color = peripherials.opts.keyboard_bg_color } },
+				{ Background = { Color = last_background } },
+				{ Text = "" },
+				{ Background = { Color = peripherials.opts.keyboard_bg_color } },
+				{ Foreground = { Color = peripherials.opts.keyboard_fg_color } },
+				{ Text = peripherials.get_keyboard_text() },
+				"ResetAttributes",
+			}
 
-		if not (keyboard == nil) then
 			for _, v in pairs(kb_battery_table) do
 				table.insert(main_table, v)
 			end
 			last_background = peripherials.opts.keyboard_bg_color
 		end
 
-		local mouse_battery_table = {
-			{ Foreground = { Color = peripherials.opts.mouse_bg_color } },
-			{ Background = { Color = last_background } },
-			{ Text = "" },
-			{ Background = { Color = peripherials.opts.mouse_bg_color } },
-			{ Foreground = { Color = peripherials.opts.mouse_fg_color } },
-			{ Text = peripherials.get_mouse_text() },
-			"ResetAttributes",
-		}
+		if not (peripherials.mouse_battery == nil) then
+			local mouse_battery_table = {
+				{ Foreground = { Color = peripherials.opts.mouse_bg_color } },
+				{ Background = { Color = last_background } },
+				{ Text = "" },
+				{ Background = { Color = peripherials.opts.mouse_bg_color } },
+				{ Foreground = { Color = peripherials.opts.mouse_fg_color } },
+				{ Text = peripherials.get_mouse_text() },
+				"ResetAttributes",
+			}
 
-		if not (mouse == nil) then
 			for _, v in pairs(mouse_battery_table) do
 				table.insert(main_table, v)
 			end

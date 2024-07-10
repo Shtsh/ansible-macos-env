@@ -34,17 +34,34 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 -- resizing splits
 -- these keymaps will also accept a range,
 -- for example `10<A-h>` will `resize_left` by `(10 * config.default_amount)`
-vim.keymap.set('n', '<A-h>', function() require('smart-splits').resize_left() end)
-vim.keymap.set('n', '<A-j>', function() require('smart-splits').resize_down() end)
-vim.keymap.set('n', '<A-k>', function() require('smart-splits').resize_up() end)
-vim.keymap.set('n', '<A-l>', function() require('smart-splits').resize_right() end)
+vim.keymap.set("n", "<A-h>", function()
+	require("smart-splits").resize_left()
+end)
+vim.keymap.set("n", "<A-j>", function()
+	require("smart-splits").resize_down()
+end)
+vim.keymap.set("n", "<A-k>", function()
+	require("smart-splits").resize_up()
+end)
+vim.keymap.set("n", "<A-l>", function()
+	require("smart-splits").resize_right()
+end)
 -- moving between splits
-vim.keymap.set('n', '<C-h>', function() require('smart-splits').move_cursor_left() end)
-vim.keymap.set('n', '<C-j>', function() require('smart-splits').move_cursor_down() end)
-vim.keymap.set('n', '<C-k>', function() require('smart-splits').move_cursor_up() end)
-vim.keymap.set('n', '<C-l>', function() require('smart-splits').move_cursor_right() end)
-vim.keymap.set('n', '<C-\\>',function()  require('smart-splits').move_cursor_previous() end)
-
+vim.keymap.set("n", "<C-h>", function()
+	require("smart-splits").move_cursor_left()
+end)
+vim.keymap.set("n", "<C-j>", function()
+	require("smart-splits").move_cursor_down()
+end)
+vim.keymap.set("n", "<C-k>", function()
+	require("smart-splits").move_cursor_up()
+end)
+vim.keymap.set("n", "<C-l>", function()
+	require("smart-splits").move_cursor_right()
+end)
+vim.keymap.set("n", "<C-\\>", function()
+	require("smart-splits").move_cursor_previous()
+end)
 
 -- exit insert mode on douple press of navigation
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode" })
@@ -86,26 +103,19 @@ vim.keymap.set("n", "[c", function()
 end, { desc = "Previous Git change" })
 
 vim.keymap.set("n", "[x", function()
-	-- local bufnr = vim.api.nvim_get_current_buf()
-	-- local navic = require("nvim-navic")
-	-- local currentElement = navic.get_data(bufnr)
-	-- local parent = currentElement[#currentElement -1]
-	-- if not parent then
-	-- 	vim.notify("Already at the highest parent.")
-	-- 	return
-	-- end
-	-- local parentPos = parent.scope.start
-	-- vim.api.nvim_win_set_cursor(0, { parentPos.line, parentPos.character })
 	require("treesitter-context").go_to_context(vim.v.count1)
 end, { silent = true, desc = "Jump to conte[X]t" })
 --Workspace
 
 -- diagnostics
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostics" })
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostics" })
-vim.keymap.set("n", "<leader>x", function()
-	require("trouble").toggle("workspace_diagnostics")
-end, { desc = "Workspace diagnostics" })
+vim.keymap.set("n", "]d", function()
+	vim.diagnostic.goto_next({ float = true })
+end, { desc = "Next diagnostics" })
+
+vim.keymap.set("n", "[d", function()
+	vim.diagnostic.goto_prev({ float = true })
+end, { desc = "Previous diagnostics" })
+
 -- split
 vim.keymap.set("n", "<leader>s", function()
 	vim.cmd("vsplit")

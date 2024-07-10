@@ -83,6 +83,7 @@ vim.diagnostic.config({
 	virtual_text = false,
 	float = {
 		source = "if_many", -- Or "if_many"
+		border = "rounded",
 	},
 })
 vim.opt.updatetime = 250

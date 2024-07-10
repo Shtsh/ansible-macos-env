@@ -30,7 +30,7 @@ return {
 				highlight_git = "name",
 				highlight_opened_files = "icon",
 				highlight_modified = "icon",
-				highlight_diagnostics = "none",
+				-- highlight_diagnostics = "none",
 				special_files = {},
 			},
 			filters = {
